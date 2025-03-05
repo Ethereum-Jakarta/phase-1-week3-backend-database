@@ -1,0 +1,7 @@
+[
+    { "_id": 1, "product_id": 1, "quantity": 50, "location": "Gudang A" },
+    { "_id": 2, "product_id": 2, "quantity": 30, "location": "Gudang B" },
+    { "_id": 3, "product_id": 3, "quantity": 20, "location": "Gudang A" },
+    { "_id": 4, "product_id": 4, "quantity": 40, "location": "Gudang B" }
+  ]
+  
