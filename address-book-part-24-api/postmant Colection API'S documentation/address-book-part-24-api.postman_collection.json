@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "d5eef567-ef6c-4e71-8e4b-73e1c0c9c90d",
+		"name": "address-book-part-24-api",
+		"description": "It's Simple API'S crud documentations for contatct with my sqlite.  \n  \nBy hudza  \nfrom RPN course.  \n  \nAll off apis using req.body param for parsing data.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27650334",
+		"_collection_link": "https://solar-meadow-626055.postman.co/workspace/cd491e17-029c-4a0c-9418-6e6fbbd4a48f/collection/27650334-d5eef567-ef6c-4e71-8e4b-73e1c0c9c90d?action=share&source=collection_link&creator=27650334"
+	},
+	"item": [
+		{
+			"name": "contactAPI's",
+			"item": [
+				{
+					"name": "showContact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/Contact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createContact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"hudza\",\r\n    \"phoneNumber\" : \"123\",\r\n    \"company\" : \"RPN\",\r\n    \"email\": \"hudza@rpn.cm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/Contact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Contact"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "\"hudza\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateContact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/Contact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this's myContacts API."
+		},
+		{
+			"name": "group API'S",
+			"item": [
+				{
+					"name": "showGroup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/Group",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createGroup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"namaGroup\":\"hudzaifah Assyahid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/Group",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGroup",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"MMPrLLoedW\",\r\n    \"namaGroup\" : \"Cool Ifah 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/Group",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGroup",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"sN039SFM20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/Group",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"Group"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this's Groups API'S, Combine in folder."
+		},
+		{
+			"name": "group contact API'S",
+			"item": [
+				{
+					"name": "showGroupContact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/GroupContact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"GroupContact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contactId\":\"123\",\r\n    \"groupId\" : \"456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/GroupContact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"GroupContact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateContactGroup",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"G4Gxfla0Wz\",\r\n    \"contactId\" : \"123\",\r\n    \"groupId\" : 456\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/GroupContact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"GroupContact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteContactGroup",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"bu5dG_CYOr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/GroupContact",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"GroupContact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000/",
+			"type": "string"
+		}
+	]
+}
