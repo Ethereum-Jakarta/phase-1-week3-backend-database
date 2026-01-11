@@ -3,11 +3,11 @@ import Views from "../view/index.view";
 import { type Contact, type ModelResponses } from "../types/index.type";
 
 export default class ContactController {
-  public static createContact({ nama, phoneNumber, company, email }: Contact) {
+  public static createContact({ nama, phone_number, company, email }: Contact) {
     try {
       const newContact: ModelResponses<Contact> = ContactModel.createContact({
         nama,
-        phoneNumber,
+        phone_number,
         company,
         email,
       });
