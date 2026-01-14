@@ -17,8 +17,14 @@ export interface ContactGroups {
   group_id: number;
 }
 
-export interface AppResponse<Tpayload> {
-  success: boolean;
-  message: string;
-  payload?: Tpayload;
-}
+export type AppResponse<T> =
+  | {
+      success: true;
+      message: string;
+      data: T;
+    }
+  | {
+      success: false;
+      message: string;
+      error?: unknown;
+    };

@@ -1,4 +1,4 @@
-# Project Name
+# ADDRESS BOOK CLI
 
 > Short description of what this project does and why it exists.
 
@@ -6,7 +6,7 @@
 
 ## ✨ Features
 
-- Feature 1 (brief explanation)
+- Create, edit, organize contact
 - Feature 2
 - Feature 3
 
@@ -16,30 +16,27 @@
 
 **Language**
 
-- Node.js / TypeScript / Java / Rust (pilih sesuai project)
+- Node.js, TypeScript, SQL
 
 **Runtime / Platform**
 
 - Node.js `v18+`
-- (Optional) Docker
 
 **Database**
 
-- SQLite / PostgreSQL / MySQL / MongoDB
+- PostgreSQL via PG driver
 
 ---
 
 ## 📦 Libraries Used
 
-| Library          | Description                 |
-| ---------------- | --------------------------- |
-| `express`        | Web framework               |
-| `dotenv`         | Environment variable loader |
-| `better-sqlite3` | SQLite driver (sync)        |
-| `zod`            | Schema validation           |
-| `tsx`            | TypeScript runtime (dev)    |
-
-> Remove or add libraries based on your project.
+| Library   | Description                 |
+| --------- | --------------------------- |
+| `chalk`   | Console UI                  |
+| `dotenv`  | Environment variable loader |
+| `node-pg` | PostgreSQL driver           |
+| `jest`    | Unit Testing                |
+| `tsx`     | TypeScript runtime (dev)    |
 
 ---
 

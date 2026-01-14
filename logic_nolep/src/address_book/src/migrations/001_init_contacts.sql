@@ -24,3 +24,4 @@ CREATE TABLE contact_groups (
 
   UNIQUE (contact_id, group_id)
 );
+

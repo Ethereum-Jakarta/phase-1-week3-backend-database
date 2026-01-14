@@ -26,4 +26,12 @@ ADDRESS BOOK COMMAND
 > node main.js delete ContactGroups <id> 
 > node main.js help
 
+
+
+showcontacts
+| contact_id | name | email | phone | company | group |
+
+showgroups
+| group_id | group_name | contact_name | phone |
+
 */
