@@ -31,7 +31,7 @@ export class ContactController {
 
     const newContact: AppResponse<ContactDTO> =
       await ContactService.updateContact(
-        Number(id)!,
+        Number(id!),
         name!,
         phone || null,
         company || null,

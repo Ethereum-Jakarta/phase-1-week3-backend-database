@@ -34,22 +34,19 @@ export class GroupRepository {
 
   public static async showGroups(): Promise<Group[]> {
     const allResult = await pool.query(`SELECT
-        g.group_id,
-        g.group_name,
-        COALESCE(
-            json_agg(
-            json_build_object(
-                'name', c.name,
-                'phone', c.phone
-            )
-            ) FILTER (WHERE c.name IS NOT NULL),
-            '[]'
-        ) AS contacts
-        M groups g
-        T JOIN contact_groups cg ON g.group_id = cg.    up_id
-        T JOIN contacts c ON cg.contact_id = c.     tact_id
-        UP BY g.group_id
-        ER BY g.group_id;`);
+  g.group_id,
+  g.group_name,
+  COALESCE(
+    json_object_agg(c.name, c.phone)
+      FILTER (WHERE c.name IS NOT NULL),
+    '{}'
+  ) AS contacts
+FROM groups g
+LEFT JOIN contact_groups cg ON g.group_id = cg.group_id
+LEFT JOIN contacts c ON cg.contact_id = c.contact_id
+GROUP BY g.group_id, g.group_name
+ORDER BY g.group_id
+`);
 
     return allResult.rows;
   }

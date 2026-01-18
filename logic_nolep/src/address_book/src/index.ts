@@ -22,12 +22,26 @@ switch (command) {
     await ContactController.showContacts();
     break;
   case "createGroup":
+    await GroupController.createGroup(argument);
+    break;
   case "updateGroup":
+    await GroupController.updateGroup(argument);
+    break;
   case "deleteGroup":
+    await GroupController.deleteGroup(argument);
+    break;
   case "showGroups":
-  case "createContact":
-  case "updateContact":
-  case "deleteContact":
+    await GroupController.showGroups();
+    break;
+  case "createContactGroup":
+    await ContactGroupController.createContactGroup(argument);
+    break;
+  case "updateContactGroup":
+    await ContactGroupController.updateContactGroup(argument);
+    break;
+  case "deleteContactGroup":
+    await ContactGroupController.deleteContactGroup(argument);
+    break;
   case "help":
     ConsoleView.showHelp();
     break;
