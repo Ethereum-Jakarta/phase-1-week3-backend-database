@@ -1,4 +1,5 @@
-INSERT INTO Inventory VALUES
+INSERT INTO Inventory (inventory_id, product_id, quantity, location)
+VALUES
 (1, 1, 50, 'Warehouse A'),
 (2, 2, 30, 'Warehouse B'),
 (3, 3, 20, 'Warehouse A'),
