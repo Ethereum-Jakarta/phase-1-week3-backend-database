@@ -1,18 +1,18 @@
 import { pool } from "../db/pool";
-import type { Contact } from "../types/index.type";
+import type { ContactDTO } from "../types/index.type";
 
 export class ContactRepository {
   public static async createContact(
     name: string,
     phone_number: string | null,
     company: string | null,
-    email: string | null
-  ): Promise<Contact> {
+    email: string | null,
+  ): Promise<ContactDTO> {
     const result = await pool.query(
       `INSERT INTO contacts (name, email, phone, company)
         VALUES ($1, $2, $3, $4)
         RETURNING *`,
-      [name, email, phone_number, company]
+      [name, email, phone_number, company],
     );
 
     return result.rows[0];
@@ -23,29 +23,28 @@ export class ContactRepository {
     name: string,
     phone_number: string | null,
     company: string | null,
-    email: string | null
-  ): Promise<Contact> {
+    email: string | null,
+  ): Promise<ContactDTO> {
     const result = await pool.query(
       `UPDATE contacts
         SET name = $2, email = COALESCE($3, email), phone = COALESCE($4, phone), company = COALESCE($5, company)
         WHERE contact_id = $1
         RETURNING *`,
-      [id, name, email, phone_number, company]
+      [id, name, email, phone_number, company],
     );
 
     return result.rows[0];
   }
 
-  public static async deleteContact(id: number): Promise<boolean> {
+  public static async deleteContact(id: number): Promise<Number> {
     const result = await pool.query(
       `DELETE FROM contacts WHERE contact_id = $1`,
-      [id]
+      [id],
     );
-
-    return result.rowCount === 1;
+    return result.rowCount!;
   }
 
-  public static async showContacts(): Promise<Contact[]> {
+  public static async showContacts(): Promise<ContactDTO[]> {
     const allResult = await pool.query(`SELECT
         c.contact_id,
         c.name,

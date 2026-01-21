@@ -1,21 +1,28 @@
 import express from "express";
+import { ContactController } from "../controller/contact.controller";
+import { GroupController } from "../controller/group.controller";
 
 export const api_router = express.Router();
 
 // contact routes
-api_router.get("/api/contacts");
-api_router.post("/api/contacts");
-api_router.delete("/api/contacts/:id");
-api_router.patch("/api/contacts/:id");
+api_router.get("/api/contacts", ContactController.showContactHandler);
+api_router.post("/api/contacts", ContactController.createContactHandler);
+api_router.delete(
+  "/api/contacts/:contactId",
+  ContactController.deleteContactHandler,
+);
+api_router.patch(
+  "/api/contacts/:contactId",
+  ContactController.updateContactHandler,
+);
 
 // group routes
-api_router.get("/api/groups");
-api_router.post("/api/groups");
-api_router.delete("/api/groups/:id");
-api_router.patch("/api/groups/:id");
+api_router.get("/api/groups", GroupController.showGroupHandler);
+api_router.post("/api/groups", GroupController.createGroupHandler);
+api_router.delete("/api/groups/:groupId", GroupController.deleteGroupHandler);
+api_router.patch("/api/groups/:groupId", GroupController.createGroupHandler);
 
 // contact group routes
-api_router.get("/api/contact-group");
 api_router.post("/api/contact-group");
-api_router.delete("/api/contact-group/:id");
-api_router.patch("/api/contact-group/:id");
+api_router.delete("/api/contact-group/:contactGroupId");
+api_router.patch("/api/contact-group/:contactGroupId");

@@ -1,10 +1,8 @@
 export type Contact = {
-  contact_id: number;
   name: string;
-  email: string | null;
-  phone: string | null;
+  phone_number: string | null;
   company: string | null;
-  groups: string[];
+  email: string | null;
 };
 
 export type Group = {
@@ -30,6 +28,7 @@ export type ContactDTO = {
 export type GroupDTO = {
   group_id: number;
   group_name: string;
+  contacts: Record<string, string>;
 };
 
 export type ContactGroupDTO = {
@@ -38,14 +37,16 @@ export type ContactGroupDTO = {
   group_id: number;
 };
 
-export type AppResponse<T> =
-  | {
-      success: true;
-      message: string;
-      data?: T;
-    }
-  | {
-      success: false;
-      message: string;
-      error?: unknown;
-    };
+export type ErrorDetails = Record<string, string>;
+
+export type SuccessResponse<T> = {
+  code: number;
+  status: string;
+  data: T;
+};
+
+export type ErrorResponse<T> = {
+  code: number;
+  status: string;
+  errors: T;
+};

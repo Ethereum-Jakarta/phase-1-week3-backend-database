@@ -1,111 +1,65 @@
+import {
+  InternalServerError,
+  ValidationError,
+  NotFoundError,
+} from "../errors/app.error";
 import { GroupRepository } from "../repositories/group.repository";
-import type { AppResponse, Group, GroupDTO } from "../types/index.type";
+import type { Group, GroupDTO } from "../types/index.type";
 
 export class GroupService {
-  public static async createGroup(
-    group_name: string
-  ): Promise<AppResponse<GroupDTO>> {
+  public static async createGroup({ group_name }: Group): Promise<GroupDTO> {
     if (!group_name) {
-      return {
-        success: false,
-        message: "Mohon masukkan nama_group",
-      };
+      throw new ValidationError({ group_name: "Nama group diperlukan" });
     }
-
     try {
-      const newContact: Group = await GroupRepository.createGroup(group_name);
-      return {
-        success: true,
-        message: "Sukses membuat group baru",
-        data: newContact,
-      };
+      const newContact = await GroupRepository.createGroup(group_name);
+      return newContact;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        return {
-          success: false,
-          message: error.message,
-        };
-      }
-      throw error;
+      throw new InternalServerError();
     }
   }
 
   public static async updateGroup(
-    id: number,
-    group_name: string
-  ): Promise<AppResponse<GroupDTO>> {
-    if (!id && !group_name) {
-      return {
-        success: false,
-        message: "Mohon masukkan id dan nama_group",
-      };
+    group_id: number,
+    { group_name }: Group,
+  ): Promise<GroupDTO> {
+    if (!group_name) {
+      throw new ValidationError({ group_name: "Nama group diperlukan" });
     }
     try {
-      const updatedGroup: Group = await GroupRepository.updateGroup(
-        id,
-        group_name
+      const updatedGroup = await GroupRepository.updateGroup(
+        group_id,
+        group_name,
       );
-      return {
-        success: true,
-        message: "Sukses mengupdate group",
-        data: updatedGroup,
-      };
+      return updatedGroup;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        return {
-          success: false,
-          message: error.message,
-        };
-      }
-      throw error;
+      throw new InternalServerError();
     }
   }
 
-  public static async deleteGroup(id: number): Promise<AppResponse<GroupDTO>> {
-    if (!id) {
-      return {
-        success: false,
-        message: "Mohon masukkan id group",
-      };
-    }
+  public static async deleteGroup(id: number): Promise<number> {
     try {
-      const deletedGroup: boolean = await GroupRepository.deleteGroup(id);
+      const deletedGroup = await GroupRepository.deleteGroup(id);
       if (!deletedGroup) {
-        return {
-          success: false,
-          message: `Gagal menghapus group, group dengan id = ${id} tidak ditemukan`,
-        };
+        throw new NotFoundError({
+          id: "Gagal menghapus group, group dengan id = ${id} tidak ditemukan",
+        });
       }
-      return {
-        success: true,
-        message: "Sukses menghapus group",
-      };
+      return deletedGroup;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        return {
-          success: false,
-          message: error.message,
-        };
+      if (error instanceof NotFoundError) {
+        throw error;
       }
-      throw error;
+      throw new InternalServerError();
     }
   }
-  public static async showGroups(): Promise<AppResponse<GroupDTO[]>> {
+
+  public static async showGroups(): Promise<GroupDTO[]> {
     try {
-      const allGroup: Group[] = await GroupRepository.showGroups();
-      return {
-        success: true,
-        message: "Sukses menampilkan semua group",
-        data: allGroup,
-      };
+      const allGroup = await GroupRepository.showGroups();
+      return allGroup;
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        return {
-          success: false,
-          message: error.message,
-        };
-      }
-      throw error;
+      throw new InternalServerError();
     }
   }
 }
