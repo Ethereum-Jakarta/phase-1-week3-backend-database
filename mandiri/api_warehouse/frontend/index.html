@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        #form-produk {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            /* align-items: center; */
+        }
+
+        #form-produk input {
+            width: 30%;
+            margin: 10px 0;
+        }
+
+        #form-produk button {
+            width: 10%;
+            border-radius: 10px;
+            border: 1px solid black;
+            margin-top: 30px;
+            margin-left: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Daftar Produk</h1>
+    <ul id="product-list">
+        <li>id - product name - category - price</li>
+    </ul>
+
+    <h1>Tambah Produk</h1>
+    <form id="form-produk">
+        <input type="number" placeholder="masukan id anda" id="id" required>
+        <input type="text" placeholder="masukan nama anda" id="name" required>
+        <input type="text" placeholder="masukan kategory" id="category" required>
+        <input type="number" placeholder="masukan harga" id="price" required>
+        <button type="submit">Tambah</button>
+    </form>
+
+    <h1>Edit Produk</h1>
+    <form id="edit-produk">
+        <input type="number" placeholder="masukan id" id="edit-id">
+        <input type="text" placeholder="masukan nama" id="edit-name">
+        <input type="text" placeholder="masukan kateogri" id="edit-category">
+        <input type="number" placeholder="masukan harga" id="edit-price">
+        <button type="submit">Edit Produk</button>
+    </form>
+
+    <h1>Hapus Produk</h1>
+    <form id="hapus-produk">
+        <input type="number" placeholder="masukan id" id="hapus-id">
+        <button type="submit">Hapus Produk</button>
+    </form>
+
+    <script>
+        //GET: mengambil data
+        fetch('http://localhost:3000/product')
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('product-list');
+                data.forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.product_id} - ${product.product_name} - ${product.category} - ${product.price}`
+                    list.appendChild(li)
+                });
+            })
+
+        //POST: menambah data
+        const form = document.getElementById("form-produk");
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const data = {
+                id: parseInt(document.getElementById('id').value),
+                name: document.getElementById('name').value,
+                category: document.getElementById('category').value,
+                price: parseInt(document.getElementById('price').value)
+            };
+
+            fetch('http://localhost:3000/product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    alert("Produk berhasil ditambahkan")
+                    location.reload()
+                })
+                .catch(err => {
+                    console.error('Gagal POST:', err)
+                })
+        })
+
+
+        //PUT: edit data
+        const editForm = document.getElementById("edit-produk");
+        editForm.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const id = parseInt(document.getElementById("edit-id").value)
+            const name = document.getElementById("edit-name").value
+            const category = document.getElementById("edit-category").value
+            const price = parseInt(document.getElementById("edit-price").value)
+
+            fetch(`http://localhost:3000/product/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, category, price })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert("Produk berhasil di update")
+                    location.reload()
+                })
+                .catch(err => {
+                    alert("Gagal update produk")
+                })
+        })
+
+        //DELETE: hapus data
+        const deleteForm = document.getElementById("hapus-produk");
+        deleteForm.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            const id = parseInt(document.getElementById("hapus-id").value)
+
+            fetch(`http://localhost:3000/product/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || "Produk berhasil di hapus")
+                    location.reload()
+                })
+                .catch(err => {
+                    alert("Data gagal dihapus")
+                })
+        })
+    </script>
+</body>
+
+</html>
