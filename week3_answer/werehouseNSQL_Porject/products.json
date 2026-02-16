@@ -1,0 +1,24 @@
+[{
+  "_id": 1,
+  "product_name": "Laptop",
+  "category": "Elektronik",
+  "price": 1099.99
+},
+{
+  "_id": 2,
+  "product_name": "Meja Kursi",
+  "category": "Perabot",
+  "price": 199.99
+},
+{
+  "_id": 3,
+  "product_name": "Printer",
+  "category": "Elektronik",
+  "price": 299.99
+},
+{
+  "_id": 4,
+  "product_name": "Rak Buku",
+  "category": "Perabot",
+  "price": 149.99
+}]
