@@ -1,0 +1,1 @@
+db.Products.updateOne({product_name: 'Laptop'}, {$set: {price: 1099.99}})
